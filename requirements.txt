@@ -1,7 +1,6 @@
 
 streamlit
 streamlit-folium
-folium
 geopy
 meteostat pandas
 ortools
