@@ -4,6 +4,7 @@ pandas
 ortools
 numpy
 scipy==1.9.3
+--copy-metadata
 requests
 folium
 streamlit-folium
