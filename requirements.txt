@@ -1,15 +1,11 @@
 
+streamlit
 folium==0.14.0
 streamlit-folium==0.13.0
-streamlit
 geopy
-meteostat 
-itertools
+meteostat
 pandas
 ortools
-cdist
 numpy
 scipy==1.10.0
-itertools
-datetime
 requests
