@@ -1,0 +1,7 @@
+folium
+streamlit
+streamlit-folium
+geopy
+meteostat pandas
+ortools
+streamlit folium streamlit-folium geopy
