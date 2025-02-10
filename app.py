@@ -3,7 +3,6 @@ import requests
 import pandas as pd
 import numpy as np
 import streamlit as st
-from streamlit_folium import folium_static
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
 from geopy.distance import geodesic
@@ -12,6 +11,8 @@ from scipy.spatial.distance import cdist
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 from geopy.geocoders import Nominatim
+from streamlit_folium import st_folium
+import folium
 
 # FUNCTIONS
 
@@ -222,7 +223,7 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
     return route1, distance_1
 
 def plot_route(locations, start_date, weather_data):
-    import folium
+    
     # Initialize the map at the first location
     m = folium.Map(location=(locations[0]["lat"], locations[0]["lon"]), zoom_start=6)
 
