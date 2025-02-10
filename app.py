@@ -359,7 +359,7 @@ def optimize_route(loc_list, days_list, start_date):
 # USER INPUT
 
 # User input fields
-locations = st.text_area("Enter locations (comma-separated):")
+locations_input = st.text_area("Enter locations (comma-separated):")
 days = st.text_input("Enter days per location (comma-separated):")
 start_date = st.date_input("Select the start date of your trip:")
 
