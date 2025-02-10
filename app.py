@@ -380,7 +380,7 @@ if st.button("Optimize Route"):
             if len(locations) == len(loc_list):  # Ensure all locations were found
                 optimized_route, route_map = optimize_route(locations, start_date)
                 st.write("Optimized Route:", optimized_route)
-                st_folium(route_map, width=700, height=500)  # Display map
+                st_folium(route_map)  # Display map
         else:
             st.error("Mismatch between locations and days entered!")
     else:
