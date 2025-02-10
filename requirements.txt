@@ -1,11 +1,11 @@
 
 streamlit
-folium==0.14.0
-streamlit-folium==0.13.0
-geopy
-meteostat
 pandas
 ortools
 numpy
 scipy==1.9.3
 requests
+folium
+streamlit-folium
+geopy
+meteostat
