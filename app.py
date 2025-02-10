@@ -327,9 +327,9 @@ def optimize_route(locations, start_date):
   # Calculate driving distances
   dist_matrix = get_osrm_distance_matrix(locations)
   # Retrieve 2 best route options
-  first_route, first_distance, second_route, second_distance = solve_tsp_two_options(locations, dist_matrix, weather_data, start_date_str, rain_threshold=5)
+  first_route, first_distance, second_route, second_distance = solve_tsp_two_options(locations, dist_matrix, weather_data, start_date, rain_threshold=5)
   # Define best route based on historic rain
-  best_route_pen, best_distance_pen = penalty_function(locations, first_route, first_distance, second_route, second_distance, start_date_str, weather_data, rain_threshold=5)
+  best_route_pen, best_distance_pen = penalty_function(locations, first_route, first_distance, second_route, second_distance, start_date, weather_data, rain_threshold=5)
 
   # Create a dictionary for quick lookup
   location_dict = {loc["name"]: loc for loc in locations}
