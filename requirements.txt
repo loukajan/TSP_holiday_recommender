@@ -4,7 +4,7 @@ pandas
 datetime
 ortools
 numpy
-scipy==1.9.3
+scipy==1.8.0
 requests
 folium
 streamlit-folium
