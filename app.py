@@ -360,7 +360,7 @@ def optimize_route(loc_list, days_list, start_date):
 
 # User input fields
 locations_input = st.text_area("Enter locations (comma-separated):")
-days = st.text_input("Enter days per location (comma-separated):")
+days_input = st.text_input("Enter days per location (comma-separated):")
 start_date = st.date_input("Select the start date of your trip:")
 
 geolocator = Nominatim(user_agent="road_trip_optimizer")
