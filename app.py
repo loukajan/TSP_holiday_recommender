@@ -221,7 +221,7 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
     #print("Route 2 has more rainfall than Route 1 or route 1 does not reach threshold.")
     return route1, distance_1
 
-def plot_route(locations):
+def plot_route(locations, start_date):
     import folium
     # Initialize the map at the first location
     m = folium.Map(location=(locations[0]["lat"], locations[0]["lon"]), zoom_start=6)
