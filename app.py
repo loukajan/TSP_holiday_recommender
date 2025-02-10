@@ -238,8 +238,8 @@ def plot_route(locations, start_date):
         current_date = end_date
 
         # Fetch weather data for the location and compute averages
-        if name in weather_data:
-            weather_entries = [weather_data[name].get(date, {}) for date in stay_dates]
+        if location["name"] in weather_data:
+            weather_entries = [weather_data[location["name"]].get(date, {}) for date in stay_dates]
 
             # Extract values and compute averages, ignoring missing (NA) values
             avg_temp = np.nanmean([entry.get("avg_temp", np.nan) for entry in weather_entries])
