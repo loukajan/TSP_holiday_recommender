@@ -222,6 +222,7 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
     return route1, distance_1
 
 def plot_route(locations):
+    import folium
     # Initialize the map at the first location
     m = folium.Map(location=(locations[0]["lat"], locations[0]["lon"]), zoom_start=6)
 
@@ -337,7 +338,7 @@ def optimize_route(locations, start_date):
   reordered_locations = [location_dict[name] for name in best_route_pen if name in location_dict]
 
   # Plot onto map
-  map = plot_route(reordered_locations)
+  map = plot_route(reordered_locations, start_date)
 
   return best_route_pen, map
 
@@ -376,9 +377,9 @@ if st.button("Optimize Route"):
                     break
 
             if len(locations) == len(loc_list):  # Ensure all locations were found
-                optimized_route, map_object = optimize_route(locations, start_date)
+                optimized_route, route_map = optimize_route(locations, start_date)
                 st.write("Optimized Route:", optimized_route)
-                folium_static(map_object)  # Display map
+                st_folium(route_map, width=700, height=500)  # Display map
         else:
             st.error("Mismatch between locations and days entered!")
     else:
