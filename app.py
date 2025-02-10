@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 import numpy as np
 import streamlit as st
-
+from PyInstaller.utils.hooks import copy_metadata
 from streamlit_folium import folium_static
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
