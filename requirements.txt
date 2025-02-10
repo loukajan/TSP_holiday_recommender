@@ -4,7 +4,7 @@ pandas
 ortools
 numpy
 scipy==1.9.3
---copy-metadata
+PyInstaller
 requests
 folium
 streamlit-folium
