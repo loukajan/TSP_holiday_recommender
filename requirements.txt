@@ -8,7 +8,7 @@ pandas
 ortools
 cdist
 numpy
-scipy==1.8.0
+scipy==1.7.3
 itertools
 datetime
 requests
