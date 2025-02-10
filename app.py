@@ -5,6 +5,7 @@ import numpy as np
 import streamlit as st
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
+from streamlit_folium import folium_static
 from geopy.distance import geodesic
 from itertools import permutations
 from scipy.spatial.distance import cdist
@@ -380,7 +381,7 @@ if st.button("Optimize Route"):
             if len(locations) == len(loc_list):  # Ensure all locations were found
                 optimized_route, route_map = optimize_route(locations, start_date)
                 st.write("Optimized Route:", optimized_route)
-                st.write(route_map)  # Display map
+                folium_static(route_map)  # Display map
         else:
             st.error("Mismatch between locations and days entered!")
     else:
