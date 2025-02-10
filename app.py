@@ -163,14 +163,14 @@ def calculate_total_rainfall(locations, route, start_date, rain_data):
 
     Parameters:
         route (list): A list of locations with their stay days.
-        start_date (str): The start date of the trip.
+        start_date (date): The start date of the trip.
         rain_data (dict): A dictionary with daily rainfall data for each location.
 
     Returns:
         float: The total rainfall (mm) for the given route.
     """
     total_rainfall = 0
-    current_date = datetime.strptime(start_date, "%Y-%m-%d")
+    current_date = start_date
 
     # Create a dictionary for quick lookup
     location_dict = {loc["name"]: loc for loc in locations}
@@ -196,7 +196,7 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
     Parameters:
         route1 (list): The first route option.
         route2 (list): The second route option.
-        start_date (str): The start date of the trip.
+        start_date (date): The start date of the trip.
         rain_data (dict): A dictionary with daily rainfall data for each location.
 
     Returns:
@@ -284,7 +284,6 @@ def optimize_route(locations, start_date):
   start_location = locations[0]
 
   # Calculate end date of trip
-  start_date = datetime.strptime(start_date, "%Y-%m-%d")
   length_of_trip = sum(location["days"] for location in locations)
   end_date = start_date + timedelta(days=sum(location["days"] for location in locations))
 
