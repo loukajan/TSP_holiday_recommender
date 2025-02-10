@@ -4,6 +4,7 @@ streamlit-folium==0.13.0
 streamlit
 geopy
 meteostat 
+itertools
 pandas
 ortools
 cdist
