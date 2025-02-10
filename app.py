@@ -266,12 +266,13 @@ def plot_route(locations, start_date, weather_data):
             {weather_info}
         </div>
         """
-
-        folium.Marker(
-            location=(location["lat"], location["lon"]),
-            popup=folium.Popup(popup_html, max_width=300)
-        ).add_to(m)
-
+        
+        for capital in capitals.itertuples():
+            folium.Marker(
+                location=(location["lat"], location["lon"]),
+                popup=folium.Popup(popup_html, max_width=300)
+            ).add_to(m)
+        
     # Connect the locations with a polyline
     route_coordinates = [(location["lat"], location["lon"]) for location in locations]
     folium.PolyLine(route_coordinates, color="blue", weight=2.5).add_to(m)
