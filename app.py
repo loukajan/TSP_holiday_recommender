@@ -278,28 +278,13 @@ def plot_route(locations):
 
 
 # Main function to optimize route
-def optimize_route(loc_list, days_list, start_date):
-
-  # SET INPUT DATA
-
-  locations = [
-    {"name": "Brussels", "lat": 50.8503, "lon": 4.3517, "days": 2},  # Brussels
-    {"name": "Prague", "lat": 50.0755, "lon": 14.4378, "days": 1},   # Prague
-    {"name": "Amsterdam", "lat": 52.3676, "lon": 4.9041, "days": 2},    # Amsterdam
-    {"name": "Paris", "lat": 48.8566, "lon": 2.3522, "days": 2},  # Paris
-    {"name": "Rome", "lat": 41.9028, "lon": 12.4964, "days": 1},   # Rome
-    {"name": "Milan", "lat": 45.4642, "lon": 9.1900, "days": 2},    # Milan
-    {"name": "Naples", "lat": 40.8518, "lon": 14.2681, "days": 2}    # Naples
-   ]
+def optimize_route(locations, start_date):
 
   # Define start location
   start_location = locations[0]
 
-  # Example: Start date of trip
-  start_date_str = "2025-02-10"
-
   # Calculate end date of trip
-  start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+  start_date = datetime.strptime(start_date, "%Y-%m-%d")
   length_of_trip = sum(location["days"] for location in locations)
   end_date = start_date + timedelta(days=sum(location["days"] for location in locations))
 
