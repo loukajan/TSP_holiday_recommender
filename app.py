@@ -259,7 +259,7 @@ def plot_route(locations, start_date, weather_data):
         # Create an HTML popup
         popup_html = f"""
         <div style="width: 250px; text-align: center;">
-            <b style="font-size:14px;">{name}</b><br>
+            <b style="font-size:14px;">{location["name"]}</b><br>
             <span style="font-size:12px;">{date_range}</span><br>
             <hr>
             {weather_info}
