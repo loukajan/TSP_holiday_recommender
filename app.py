@@ -284,6 +284,8 @@ def optimize_route(locations, start_date):
   start_location = locations[0]
 
   # Calculate end date of trip
+  date_str = start_date.strftime("%Y-%m-%d")
+  start_date = datetime.strptime(date_str, "%Y-%m-%d") 
   length_of_trip = sum(location["days"] for location in locations)
   end_date = start_date + timedelta(days=sum(location["days"] for location in locations))
 
