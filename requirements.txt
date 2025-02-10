@@ -7,3 +7,8 @@ meteostat
 pandas
 ortools
 cdist
+scipy
+itertools
+datetime
+requests
+numpy
