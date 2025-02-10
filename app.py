@@ -3,7 +3,6 @@ import requests
 import pandas as pd
 import numpy as np
 import streamlit as st
-from PyInstaller.utils.hooks import copy_metadata
 from streamlit_folium import folium_static
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
@@ -12,7 +11,6 @@ from itertools import permutations
 from scipy.spatial.distance import cdist
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-import requests
 from geopy.geocoders import Nominatim
 
 # FUNCTIONS
