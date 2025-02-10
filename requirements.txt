@@ -3,6 +3,7 @@ folium==0.14.0
 streamlit-folium==0.13.0
 streamlit
 geopy
-meteostat pandas
+meteostat 
+pandas
 ortools
-streamlit folium streamlit-folium geopy
+
