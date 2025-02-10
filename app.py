@@ -1,9 +1,6 @@
-!pip install meteostat pandas
-!pip install ortools
-!pip install streamlit folium streamlit-folium geopy
 
 import requests
-import folium
+#import folium
 import pandas as pd
 import numpy as np
 import streamlit as st
