@@ -351,11 +351,11 @@ def optimize_route(locations, start_date, rain_threshold_input):
 
 # DESCRIPTION
 st.title("Holiday Travel Planner")
-st.write("This app helps you optimize your road trip by minimizing travel distance and considering expected weather. :sun_with_face: :calendar:")
+st.write(emoji.emojize("This app helps you optimize your road trip by minimizing travel distance and considering expected weather. :sun_with_face: :calendar:"))
 
 # Add instructions before input
 st.subheader("Enter Your Trip Details")
-st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, another route is recommended. 	:bullseye: :motorway: ")
+st.markdown(emoji.emojize("Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, another route is recommended. 	:bullseye: :motorway: "))
 
 
 # USER INPUT
