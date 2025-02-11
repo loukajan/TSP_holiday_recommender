@@ -351,7 +351,7 @@ def optimize_route(locations, start_date, rain_threshold_input):
 
 # DESCRIPTION
 st.title("Holiday Travel Planner")
-st.write(emoji.emojize(":sun_with_face: :calendar: This app helps you optimize your road trip by minimizing travel distance and considering expected weather. :sun_with_face: :calendar:"))
+st.write(emoji.emojize(":sun_with_face: :calendar: This app helps you optimize your road trip by minimizing travel distance and considering expected weather conditions such as rainfall. No more endlessly checken traveling distances and weather forecasts, just do it in one click with your new holiday optimizer! :sun_with_face: :calendar:"))
 
 # Add instructions before input
 st.subheader("Enter Your Trip Details")
