@@ -10,3 +10,4 @@ folium
 streamlit-folium
 geopy
 meteostat
+emoji
