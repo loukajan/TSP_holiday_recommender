@@ -218,7 +218,7 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
         # Skip route1 if its rainfall is higher than route2
         if route1_rainfall > route2_rainfall:
             penalty_note = f" Most optimal route is expected to have {route1_rainfall:.2f} mm of rainfall. Chosing second best route to go decrease rainfall to {route2_rainfall:.2f} mm"
-            return route2, distance_2  # Return second route as the best option
+            return route2, distance_2, penalty_note  # Return second route as the best option
 
     # Otherwise, choose route1
     #print("Route 2 has more rainfall than Route 1 or route 1 does not reach threshold.")
