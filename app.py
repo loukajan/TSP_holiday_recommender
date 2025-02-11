@@ -352,7 +352,9 @@ st.write("This app helps you optimize your road trip by minimizing travel distan
 
 # Add instructions before input
 st.subheader("Enter Your Trip Details")
-st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traverling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, a another route is recommended.")
+st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. 
+Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. 
+If the most optimal route is expected to have a lot of rainfall, another route is recommended.")
 
 
 # USER INPUT
@@ -389,7 +391,7 @@ if st.button("Optimize Route"):
                     break
 
             if len(locations) == len(loc_list):  # Ensure all locations were found
-                optimized_route, route_map, penalty_note = optimize_route(locations, start_date)
+                optimized_route, route_map, penalty_note = optimize_route(locations, start_date, rain_threshold_input)
                 st.write("Optimized Route:", optimized_route)
                 st.write(penalty_note)
                 folium_static(route_map)  # Display map
