@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import numpy as np
 import streamlit as st
+import time
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
 from streamlit_folium import folium_static
@@ -363,10 +364,12 @@ days_input = st.text_input("Enter days per location (comma-separated):")
 start_date = st.date_input("Select the start date of your trip:")
 rain_threshold_input = 10
 geolocator = Nominatim(user_agent="road_trip_optimizer")
+@lru_cache(maxsize=100) 
 
 def get_coordinates(location_name):
     try:
         location = geolocator.geocode(location_name)
+        time.sleep(1)
         if location:
             return location.latitude, location.longitude
     except Exception as e:
