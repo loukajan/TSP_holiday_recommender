@@ -105,8 +105,8 @@ def solve_tsp_two_options(locations, distance_matrix, rain_data, start_date, rai
     # Define search parameters.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
-    #search_parameters.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-    #search_parameters.time_limit.seconds = 30  # Adjust as needed
+    search_parameters.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
+    search_parameters.time_limit.seconds = 30  # Adjust as needed
 
     # Solve the problem.
     solution = routing.SolveWithParameters(search_parameters)
@@ -211,17 +211,18 @@ def penalty_function(locations, route1, distance_1, route2, distance_2, start_da
     #print(f"Route 1 total rainfall: {route1_rainfall:.2f} mm")
     #print(f"Route 2 total rainfall: {route2_rainfall:.2f} mm")
 
+    penalty_note = ""
+
     # Only apply penalty if route1 rainfall exceeds threshold
     if route1_rainfall > rain_threshold:
-        #print("route 1 reaches threshold.")
         # Skip route1 if its rainfall is higher than route2
         if route1_rainfall > route2_rainfall:
-            #print("Route 1 has more rainfall than Route 2. Skipping Route 1.")
+            penalty_note = f" Most optimal route is expected to have {route1_rainfall:.2f} mm of rainfall. Chosing second best route to go decrease rainfall to {route2_rainfall:.2f} mm"
             return route2, distance_2  # Return second route as the best option
 
     # Otherwise, choose route1
     #print("Route 2 has more rainfall than Route 1 or route 1 does not reach threshold.")
-    return route1, distance_1
+    return route1, distance_1, penalty_note
 
 def plot_route(locations, start_date, weather_data):
     
@@ -253,7 +254,7 @@ def plot_route(locations, start_date, weather_data):
             Avg Temp: {avg_temp:.1f}°C<br>
             Max Temp: {max_temp:.1f}°C<br>
             Min Temp: {min_temp:.1f}°C<br>
-            Avg Precip: {avg_precip:.1f} mm
+            Avg Daily Precip: {avg_precip:.1f} mm
             """
         else:
             weather_info = "Weather data unavailable"
@@ -281,7 +282,7 @@ def plot_route(locations, start_date, weather_data):
 
 
 # Main function to optimize route
-def optimize_route(locations, start_date):
+def optimize_route(locations, start_date, rain_threshold_input):
 
   # Define start location
   start_location = locations[0]
@@ -330,9 +331,10 @@ def optimize_route(locations, start_date):
   # Calculate driving distances
   dist_matrix = get_osrm_distance_matrix(locations)
   # Retrieve 2 best route options
-  first_route, first_distance, second_route, second_distance = solve_tsp_two_options(locations, dist_matrix, weather_data, start_date, rain_threshold=5)
+  rain_threshold = rain_threshold_input
+  first_route, first_distance, second_route, second_distance = solve_tsp_two_options(locations, dist_matrix, weather_data, start_date, rain_threshold)
   # Define best route based on historic rain
-  best_route_pen, best_distance_pen = penalty_function(locations, first_route, first_distance, second_route, second_distance, start_date, weather_data, rain_threshold=5)
+  best_route_pen, best_distance_pen, penalty_note = penalty_function(locations, first_route, first_distance, second_route, second_distance, start_date, weather_data, rain_threshold)
 
   # Create a dictionary for quick lookup
   location_dict = {loc["name"]: loc for loc in locations}
@@ -342,7 +344,15 @@ def optimize_route(locations, start_date):
   # Plot onto map
   map = plot_route(reordered_locations, start_date, weather_data)
 
-  return best_route_pen, map
+  return best_route_pen, map, penalty_note
+
+# DESCRIPTION
+st.title("Holiday Travel Planner")
+st.write("This app helps you optimize your road trip by minimizing travel distance and considering expected weather.")
+
+# Add instructions before input
+st.subheader("Enter Your Trip Details")
+st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traverling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, a another route is recommended.")
 
 
 # USER INPUT
@@ -351,7 +361,7 @@ def optimize_route(locations, start_date):
 locations_input = st.text_area("Enter locations (comma-separated):")
 days_input = st.text_input("Enter days per location (comma-separated):")
 start_date = st.date_input("Select the start date of your trip:")
-
+rain_threshold_input = 10
 geolocator = Nominatim(user_agent="road_trip_optimizer")
 
 def get_coordinates(location_name):
@@ -379,8 +389,9 @@ if st.button("Optimize Route"):
                     break
 
             if len(locations) == len(loc_list):  # Ensure all locations were found
-                optimized_route, route_map = optimize_route(locations, start_date)
+                optimized_route, route_map, penalty_note = optimize_route(locations, start_date)
                 st.write("Optimized Route:", optimized_route)
+                st.write(penalty_note)
                 folium_static(route_map)  # Display map
         else:
             st.error("Mismatch between locations and days entered!")
