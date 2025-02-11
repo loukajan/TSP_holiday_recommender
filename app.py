@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import time
+from functools import lru_cache
 from meteostat import Daily, Stations, Point
 from datetime import datetime, timedelta
 from streamlit_folium import folium_static
