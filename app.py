@@ -352,9 +352,7 @@ st.write("This app helps you optimize your road trip by minimizing travel distan
 
 # Add instructions before input
 st.subheader("Enter Your Trip Details")
-st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. 
-Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. 
-If the most optimal route is expected to have a lot of rainfall, another route is recommended.")
+st.markdown("Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, another route is recommended.")
 
 
 # USER INPUT
