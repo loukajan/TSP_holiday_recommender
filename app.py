@@ -384,7 +384,7 @@ if st.button("Optimize Route"):
         loc_list = locations_input.split(",")
         days_list = list(map(int, days_input.split(",")))
         loc_list.insert(0, start_location)
-        days_list.insert(0, "1")
+        days_list.insert(0, 1)
 
         if len(loc_list) == len(days_list):
             locations = []
