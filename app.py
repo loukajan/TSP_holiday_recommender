@@ -355,7 +355,7 @@ st.write(emoji.emojize(":sun_with_face: :calendar: This app helps you optimize y
 
 # Add instructions before input
 st.subheader("Enter Your Trip Details")
-st.markdown(emoji.emojize(" :bullseye: :motorway: Please provide the locations, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, another route is recommended. 	:bullseye: :motorway: "))
+st.markdown(emoji.emojize(" :bullseye: :motorway: Please provide your start location, the locations you want to visit, number of days at each stop, and the start date of your trip. Our Traveling Salesman Algorithm will calculate the most efficient traveling route while also considering weather expectations. If the most optimal route is expected to have a lot of rainfall, another route is recommended. 	:bullseye: :motorway: "))
 
 
 # USER INPUT
