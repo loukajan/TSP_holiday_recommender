@@ -361,7 +361,8 @@ st.markdown(emoji.emojize(" :bullseye: :motorway: Please provide the locations, 
 # USER INPUT
 
 # User input fields
-locations_input = st.text_area("Enter locations (comma-separated):")
+start_location = st.text_area("Enter starting location")
+locations_input = st.text_area("Enter locations to visit (comma-separated):")
 days_input = st.text_input("Enter days per location (comma-separated):")
 start_date = st.date_input("Select the start date of your trip:")
 rain_threshold_input = 10
@@ -382,6 +383,8 @@ if st.button("Optimize Route"):
     if locations_input and days_input and start_date:
         loc_list = locations_input.split(",")
         days_list = list(map(int, days_input.split(",")))
+        loc_list.insert(0, start_location)
+        days_list.insert(0, "1")
 
         if len(loc_list) == len(days_list):
             locations = []
